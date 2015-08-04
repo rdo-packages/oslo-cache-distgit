@@ -2,8 +2,8 @@
 %global pypi_name oslo.cache
 
 Name:           python-oslo-cache
-Version:        0.2.0
-Release:        1%{?dist}
+Version:        XXX
+Release:        XXX
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -43,7 +43,7 @@ BuildRequires:  dos2unix
 Documentation for the OpenStack Oslo cache library.
 
 %prep
-%setup -q -n %{pypi_name}-%{version}
+%setup -q -n %{pypi_name}-%{upstream_version}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -81,5 +81,3 @@ dos2unix doc/build/html/_static/jquery.js
 %license LICENSE
 
 %changelog
-* Fri Jul 10 2015 Chandan Kumar <chkumar246@gmail.com> - 0.2.0-1
-- Initial package.
