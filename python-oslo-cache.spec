@@ -50,9 +50,6 @@ rm -rf %{pypi_name}.egg-info
 # Let RPM handle the dependencies
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
-# make doc build compatible with python-oslo-sphinx RPM
-sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
-
 rm -f {test-,}requirements.txt
 
 
