@@ -2,7 +2,7 @@
 %global pypi_name oslo.cache
 
 Name:           python-oslo-cache
-Version:        0.2.0
+Version:        0.5.0
 Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
@@ -81,5 +81,8 @@ dos2unix doc/build/html/_static/jquery.js
 %license LICENSE
 
 %changelog
+* Tue Aug 18 2015 Alan Pevec <alan.pevec@redhat.com> 0.5.0-1
+- Update to upstream 0.5.0
+
 * Fri Jul 10 2015 Chandan Kumar <chkumar246@gmail.com> - 0.2.0-1
 - Initial package.
