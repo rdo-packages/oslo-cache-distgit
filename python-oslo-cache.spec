@@ -2,7 +2,7 @@
 %global pypi_name oslo.cache
 
 Name:           python-oslo-cache
-Version:        0.5.0
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
@@ -22,7 +22,11 @@ Requires:       python-oslo-config
 Requires:       python-oslo-i18n
 Requires:       python-oslo-log
 Requires:       python-oslo-utils
-Requires:       python-memcached
+# https://github.com/openstack/oslo.cache/commit/950a4448e329e9f85b657a3a8d0c0f434c458a01
+# Move optional backend dependencies into setup.cfg [extras]
+# e.g. pip install oslo.cache[dogpile]
+# TODO use new RPM soft-deps
+#Requires:       python-memcached
 
 
 %description
@@ -81,6 +85,9 @@ dos2unix doc/build/html/_static/jquery.js
 %license LICENSE
 
 %changelog
+* Fri Sep 18 2015 Alan Pevec <alan.pevec@redhat.com> 0.7.0-1
+- Update to upstream 0.7.0
+
 * Tue Aug 18 2015 Alan Pevec <alan.pevec@redhat.com> 0.5.0-1
 - Update to upstream 0.5.0
 
