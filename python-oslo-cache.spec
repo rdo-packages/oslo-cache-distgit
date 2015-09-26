@@ -13,7 +13,9 @@ BuildArch:      noarch
  
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
+# Required for documentation build
 BuildRequires:  python-sphinx
+BuildRequires:  python-oslo-config
 
 Requires:       python-babel
 Requires:       python-dogpile-cache
