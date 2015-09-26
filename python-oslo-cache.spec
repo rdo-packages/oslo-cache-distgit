@@ -37,6 +37,7 @@ backends such as Memcached.
 Summary:        Documentation for the OpenStack Oslo Cache library
 
 BuildRequires:  python-sphinx
+BuildRequires:  python-oslo-config
 BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-fixtures
 BuildRequires:  dos2unix
