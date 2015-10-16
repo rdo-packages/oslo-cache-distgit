@@ -16,6 +16,8 @@ BuildRequires:  python-pbr
 # Required for documentation build
 BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-config
+BuildRequires:  python-dogpile-cache
+BuildRequires:  python-oslo-log
 
 Requires:       python-babel
 Requires:       python-dogpile-cache
