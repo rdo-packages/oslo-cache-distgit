@@ -3,7 +3,7 @@
 
 Name:           python-oslo-cache
 Version:        0.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -85,6 +85,9 @@ dos2unix doc/build/html/_static/jquery.js
 %license LICENSE
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Fri Sep 18 2015 Alan Pevec <alan.pevec@redhat.com> 0.7.0-1
 - Update to upstream 0.7.0
 
