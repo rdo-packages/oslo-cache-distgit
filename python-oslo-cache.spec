@@ -5,9 +5,11 @@
 %global pypi_name oslo.cache
 %global pkg_name oslo-cache
 
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:           python-oslo-cache
-Version:        XXX
-Release:        XXX
+Version:        1.5.0
+Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -187,3 +189,6 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Mon Mar 21 2016 Haikel Guemar <hguemar@fedoraproject.org> 1.5.0-
+- Update to 1.5.0
+
