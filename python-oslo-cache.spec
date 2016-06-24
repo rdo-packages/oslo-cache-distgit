@@ -25,7 +25,7 @@ BuildRequires:  python-pbr
 # Required for documentation build
 BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-config
-BuildRequires:  python-dogpile-cache >= 0.6.1
+BuildRequires:  python-dogpile-cache
 BuildRequires:  python-oslo-log
 # Required for tests
 BuildRequires:  python-hacking
@@ -35,7 +35,7 @@ BuildRequires:  python-memcached
 BuildRequires:  python-pymongo
 
 Requires:       python-babel
-Requires:       python-dogpile-cache >= 0.6.1
+Requires:       python-dogpile-cache
 Requires:       python-six
 Requires:       python-oslo-config
 Requires:       python-oslo-i18n
