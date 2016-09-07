@@ -7,8 +7,8 @@
 %global pkg_name oslo-cache
 
 Name:           python-oslo-cache
-Version:        XXX
-Release:        XXX
+Version:        1.14.0
+Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -188,3 +188,6 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Wed Sep 07 2016 Haikel Guemar <hguemar@fedoraproject.org> 1.14.0-1
+- Update to 1.14.0
+
