@@ -33,6 +33,8 @@ BuildRequires:  python-mock
 BuildRequires:  python-oslotest
 BuildRequires:  python-memcached
 BuildRequires:  python-pymongo
+# Required to compile translation files
+BuildRequires:  python-babel
 
 Requires:       python-babel
 Requires:       python-dogpile-cache >= 0.6.1
@@ -42,6 +44,7 @@ Requires:       python-oslo-i18n
 Requires:       python-oslo-log
 Requires:       python-oslo-utils
 Requires:       python-memcached
+Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 
 %description -n python2-%{pkg_name}
@@ -96,6 +99,7 @@ Requires:       python3-oslo-i18n
 Requires:       python3-oslo-log
 Requires:       python3-oslo-utils
 Requires:       python3-memcached
+Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 %description -n python3-%{pkg_name}
 oslo.cache aims to provide a generic caching mechanism for OpenStack projects 
@@ -116,6 +120,12 @@ Requires:  python3-pymongo
 Tests for the OpenStack Oslo Cache library
 %endif
 
+%package  -n python-%{pkg_name}-lang
+Summary:   Translation files for Oslo cache library
+
+%description -n python-%{pkg_name}-lang
+Translation files for Oslo cache library
+
 %description
 oslo.cache aims to provide a generic caching mechanism for OpenStack projects 
 by wrapping the dogpile.cache library. The dogpile.cache library provides
@@ -124,7 +134,7 @@ backends such as Memcached.
 
 
 %prep
-%setup -q -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -145,6 +155,8 @@ sphinx-build -b html -d build/doctrees   source build/html
 popd
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
+# Generate i18n files
+%{__python2} setup.py compile_catalog -d build/lib/oslo_cache/locale
 
 %install
 %py2_install
@@ -152,6 +164,18 @@ rm -fr doc/build/html/.buildinfo
 %py3_install
 %endif
 dos2unix doc/build/html/_static/jquery.js
+
+# Install i18n .mo files (.po and .pot are not required)
+install -d -m 755 %{buildroot}%{_datadir}
+rm -f %{buildroot}%{python2_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
+rm -f %{buildroot}%{python2_sitelib}/oslo_cache/locale/*pot
+mv %{buildroot}%{python2_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/locale
+%if 0%{?with_python3}
+rm -rf %{buildroot}%{python3_sitelib}/oslo_cache/locale
+%endif
+
+# Find language files
+%find_lang oslo_cache --all-name
 
 %check
 %{__python2} setup.py test
@@ -173,6 +197,9 @@ rm -rf .testrepository
 
 %files -n python2-%{pkg_name}-tests
 %{python2_sitelib}/oslo_cache/tests
+
+%files -n python-%{pkg_name}-lang -f oslo_cache.lang
+%license LICENSE
 
 %if 0%{?with_python3}
 %files -n python3-%{pkg_name}
