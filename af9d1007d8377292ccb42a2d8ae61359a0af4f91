@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_7fd53d42",
+        "filename": "python-oslo-cache.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2016-09-20T10:05:56Z",
+      "side": 1,
+      "message": "Can we add this line %{!?upstream_version: %global upstream_version %{version}%{?milestone}} also above? Or we can do it in a separate patch rest looks ok to me.",
+      "revId": "af9d1007d8377292ccb42a2d8ae61359a0af4f91",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
