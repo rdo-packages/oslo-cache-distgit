@@ -16,6 +16,24 @@
       "revId": "af9d1007d8377292ccb42a2d8ae61359a0af4f91",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_bfcfc5af",
+        "filename": "python-oslo-cache.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2016-09-20T10:08:53Z",
+      "side": 1,
+      "message": "Let\u0027s do it in a separate review.",
+      "parentUuid": "facab960_7fd53d42",
+      "revId": "af9d1007d8377292ccb42a2d8ae61359a0af4f91",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
