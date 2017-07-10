@@ -59,7 +59,7 @@ Summary:        Documentation for the OpenStack Oslo Cache library
 
 BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-config
-BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-openstackdocstheme
 BuildRequires:  python-fixtures
 BuildRequires:  dos2unix
 
@@ -150,10 +150,7 @@ rm -f {test-,}requirements.txt
 %py3_build
 %endif
 #doc
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html -d build/doctrees   source build/html
-popd
+%{__python2} setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 # Generate i18n files
