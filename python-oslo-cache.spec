@@ -7,7 +7,7 @@
 %global pkg_name oslo-cache
 
 Name:           python-oslo-cache
-Version:        1.14.0
+Version:        1.14.1
 Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
@@ -215,6 +215,9 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Tue Jul 11 2017 rdo-trunk <javier.pena@redhat.com> 1.14.1-1
+- Update to 1.14.1
+
 * Wed Sep 07 2016 Haikel Guemar <hguemar@fedoraproject.org> 1.14.0-1
 - Update to 1.14.0
 
