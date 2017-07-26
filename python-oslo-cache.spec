@@ -3,6 +3,10 @@
 %global with_python3 1
 %endif
 
+# NOTE(ykarel) disable doc as doc depends on etcd3gw which is
+# not packaged.
+%global with_doc 0
+
 %global pypi_name oslo.cache
 %global pkg_name oslo-cache
 
@@ -23,17 +27,14 @@ Summary:        Cache storage for Openstack projects
 
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
-# Required for documentation build
-BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-config
-BuildRequires:  python-dogpile-cache >= 0.6.1
-BuildRequires:  python-oslo-log
 # Required for tests
 BuildRequires:  python-hacking
 BuildRequires:  python-mock
 BuildRequires:  python-oslotest
 BuildRequires:  python-memcached
 BuildRequires:  python-pymongo
+BuildRequires:  python-dogpile-cache >= 0.6.1
+BuildRequires:  python-oslo-log
 # Required to compile translation files
 BuildRequires:  python-babel
 
@@ -54,6 +55,7 @@ by wrapping the dogpile.cache library. The dogpile.cache library provides
 support memoization, key value storage and interfaces to common caching
 backends such as Memcached.
 
+%if 0%{?with_doc}
 %package doc
 Summary:        Documentation for the OpenStack Oslo Cache library
 
@@ -66,6 +68,7 @@ BuildRequires:  dos2unix
 
 %description doc
 Documentation for the OpenStack Oslo cache library.
+%endif
 
 %package  -n python2-%{pkg_name}-tests
 Summary:        Tests for the OpenStack Oslo Cache library
@@ -150,10 +153,13 @@ rm -f {test-,}requirements.txt
 %if 0%{?with_python3}
 %py3_build
 %endif
+
+%if 0%{?with_doc}
 #doc
 %{__python2} setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
+%endif
 # Generate i18n files
 %{__python2} setup.py compile_catalog -d build/lib/oslo_cache/locale
 
@@ -162,7 +168,9 @@ rm -fr doc/build/html/.buildinfo
 %if 0%{?with_python3}
 %py3_install
 %endif
+%if 0%{?with_doc}
 dos2unix doc/build/html/_static/jquery.js
+%endif
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
@@ -190,9 +198,11 @@ rm -rf .testrepository
 %{python2_sitelib}/%{pypi_name}-%{upstream_version}-py?.?.egg-info
 %exclude %{python2_sitelib}/oslo_cache/tests
 
+%if 0%{?with_doc}
 %files doc
 %doc doc/build/html
 %license LICENSE
+%endif
 
 %files -n python2-%{pkg_name}-tests
 %{python2_sitelib}/oslo_cache/tests
