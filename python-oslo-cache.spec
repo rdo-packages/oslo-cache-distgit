@@ -33,18 +33,18 @@ BuildRequires:  python-mock
 BuildRequires:  python-oslotest
 BuildRequires:  python-memcached
 BuildRequires:  python-pymongo
-BuildRequires:  python-dogpile-cache >= 0.6.1
+BuildRequires:  python-dogpile-cache >= 0.6.2
 BuildRequires:  python-oslo-log
 # Required to compile translation files
 BuildRequires:  python-babel
 
 Requires:       python-babel
-Requires:       python-dogpile-cache >= 0.6.1
+Requires:       python-dogpile-cache >= 0.6.2
 Requires:       python-six
-Requires:       python-oslo-config
-Requires:       python-oslo-i18n
-Requires:       python-oslo-log
-Requires:       python-oslo-utils
+Requires:       python-oslo-config >= 4.0.0
+Requires:       python-oslo-i18n >= 2.1.0
+Requires:       python-oslo-log >= 3.22.0
+Requires:       python-oslo-utils >= 3.20.0
 Requires:       python-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
@@ -97,12 +97,12 @@ BuildRequires:  python3-memcached
 BuildRequires:  python3-pymongo
 
 Requires:       python3-babel
-Requires:       python3-dogpile-cache
+Requires:       python3-dogpile-cache >= 0.6.2
 Requires:       python3-six
-Requires:       python3-oslo-config
-Requires:       python3-oslo-i18n
-Requires:       python3-oslo-log
-Requires:       python3-oslo-utils
+Requires:       python3-oslo-config >= 4.0.0
+Requires:       python3-oslo-i18n >= 2.1.0
+Requires:       python3-oslo-log 3.22.0
+Requires:       python3-oslo-utils >= 3.20.0
 Requires:       python3-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
