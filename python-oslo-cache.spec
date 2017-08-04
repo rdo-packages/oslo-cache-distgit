@@ -28,6 +28,7 @@ Summary:        Cache storage for Openstack projects
 
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
+BuildRequires:  python-urllib3
 # Required for tests
 BuildRequires:  python-hacking
 BuildRequires:  python-mock
