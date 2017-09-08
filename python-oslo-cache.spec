@@ -10,6 +10,12 @@
 %global pypi_name oslo.cache
 %global pkg_name oslo-cache
 
+%global common_desc \
+oslo.cache aims to provide a generic caching mechanism for OpenStack projects \
+by wrapping the dogpile.cache library. The dogpile.cache library provides \
+support memoization, key value storage and interfaces to common caching \
+backends such as Memcached.
+
 Name:           python-oslo-cache
 Version:        XXX
 Release:        XXX
@@ -52,10 +58,7 @@ Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 
 %description -n python2-%{pkg_name}
-oslo.cache aims to provide a generic caching mechanism for OpenStack projects 
-by wrapping the dogpile.cache library. The dogpile.cache library provides
-support memoization, key value storage and interfaces to common caching
-backends such as Memcached.
+%{common_desc}
 
 %if 0%{?with_doc}
 %package doc
@@ -109,10 +112,7 @@ Requires:       python3-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 %description -n python3-%{pkg_name}
-oslo.cache aims to provide a generic caching mechanism for OpenStack projects 
-by wrapping the dogpile.cache library. The dogpile.cache library provides
-support memoization, key value storage and interfaces to common caching
-backends such as Memcached.
+%{common_desc}
 
 %package  -n python3-%{pkg_name}-tests
 Summary:        Tests for the OpenStack Oslo Cache library
@@ -134,10 +134,7 @@ Summary:   Translation files for Oslo cache library
 Translation files for Oslo cache library
 
 %description
-oslo.cache aims to provide a generic caching mechanism for OpenStack projects 
-by wrapping the dogpile.cache library. The dogpile.cache library provides
-support memoization, key value storage and interfaces to common caching
-backends such as Memcached.
+%{common_desc}
 
 
 %prep
