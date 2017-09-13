@@ -22,7 +22,7 @@ Release:        XXX
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
-URL:            http://launchpad.net/oslo
+URL:            http://launchpad.net/%{pypi_name}
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 BuildArch:      noarch
  
