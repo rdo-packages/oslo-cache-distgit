@@ -40,7 +40,6 @@ BuildRequires:  python-oslo-log
 # Required to compile translation files
 BuildRequires:  python-babel
 
-Requires:       python-babel
 Requires:       python-dogpile-cache >= 0.6.2
 Requires:       python-six
 Requires:       python-oslo-config >= 4.0.0
@@ -98,7 +97,6 @@ BuildRequires:  python3-oslotest
 BuildRequires:  python3-memcached
 BuildRequires:  python3-pymongo
 
-Requires:       python3-babel
 Requires:       python3-dogpile-cache >= 0.6.2
 Requires:       python3-six
 Requires:       python3-oslo-config >= 4.0.0
