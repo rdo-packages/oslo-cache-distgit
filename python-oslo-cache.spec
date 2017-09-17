@@ -43,6 +43,7 @@ BuildRequires:  python-memcached
 BuildRequires:  python-pymongo
 BuildRequires:  python-dogpile-cache >= 0.6.2
 BuildRequires:  python-oslo-log
+BuildRequires:  openstack-macros 
 # Required to compile translation files
 BuildRequires:  python-babel
 
@@ -142,7 +143,7 @@ rm -rf %{pypi_name}.egg-info
 
 # Let RPM handle the dependencies
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
-rm -f {test-,}requirements.txt
+%py_req_cleanup
 
 
 %build
