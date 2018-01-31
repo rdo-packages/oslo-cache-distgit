@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa53dc9_f962f7ac",
+        "filename": "python-oslo-cache.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-01-31T18:46:46Z",
+      "side": 1,
+      "message": "python2-%{pkg_name} ?",
+      "range": {
+        "startLine": 91,
+        "startChar": 11,
+        "endLine": 91,
+        "endChar": 29
+      },
+      "revId": "4b133cc32f01c0a1c4d5433c51e1e42bb071a328",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
