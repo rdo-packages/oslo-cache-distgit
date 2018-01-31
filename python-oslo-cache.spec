@@ -33,26 +33,26 @@ Summary:        Cache storage for Openstack projects
 %{?python_provide:%python_provide python2-%{pkg_name}}
 
 BuildRequires:  python2-devel
-BuildRequires:  python-pbr
-BuildRequires:  python-urllib3
+BuildRequires:  python2-pbr
+BuildRequires:  python2-urllib3
 # Required for tests
-BuildRequires:  python-hacking
-BuildRequires:  python-mock
-BuildRequires:  python-oslotest
-BuildRequires:  python-memcached
-BuildRequires:  python-pymongo
-BuildRequires:  python-dogpile-cache >= 0.6.2
-BuildRequires:  python-oslo-log
+BuildRequires:  python2-hacking
+BuildRequires:  python2-mock
+BuildRequires:  python2-oslotest
+BuildRequires:  python2-memcached
+BuildRequires:  python2-pymongo
+BuildRequires:  python2-dogpile-cache >= 0.6.2
+BuildRequires:  python2-oslo-log
 # Required to compile translation files
-BuildRequires:  python-babel
+BuildRequires:  python2-babel
 
-Requires:       python-dogpile-cache >= 0.6.2
-Requires:       python-six
-Requires:       python-oslo-config >= 4.0.0
-Requires:       python-oslo-i18n >= 2.1.0
-Requires:       python-oslo-log >= 3.22.0
-Requires:       python-oslo-utils >= 3.20.0
-Requires:       python-memcached
+Requires:       python2-dogpile-cache >= 0.6.2
+Requires:       python2-six
+Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-i18n >= 3.15.3
+Requires:       python2-oslo-log >= 3.36.0
+Requires:       python2-oslo-utils >= 3.33.0
+Requires:       python2-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 
@@ -63,11 +63,11 @@ Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 %package doc
 Summary:        Documentation for the OpenStack Oslo Cache library
 
-BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-config
-BuildRequires:  python-openstackdocstheme
-BuildRequires:  python-oslo-sphinx
-BuildRequires:  python-fixtures
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-oslo-config
+BuildRequires:  python2-openstackdocstheme
+BuildRequires:  python2-oslo-sphinx
+BuildRequires:  python2-fixtures
 BuildRequires:  dos2unix
 
 %description doc
@@ -78,10 +78,10 @@ Documentation for the OpenStack Oslo cache library.
 Summary:        Tests for the OpenStack Oslo Cache library
 
 Requires:  python-%{pkg_name} = %{version}-%{release}
-Requires:  python-hacking
-Requires:  python-mock
-Requires:  python-oslotest
-Requires:  python-pymongo
+Requires:  python2-hacking
+Requires:  python2-mock
+Requires:  python2-oslotest
+Requires:  python2-pymongo
 
 %description -n python2-%{pkg_name}-tests
 Tests for the OpenStack Oslo Cache library
@@ -102,10 +102,10 @@ BuildRequires:  python3-pymongo
 
 Requires:       python3-dogpile-cache >= 0.6.2
 Requires:       python3-six
-Requires:       python3-oslo-config >= 4.0.0
-Requires:       python3-oslo-i18n >= 2.1.0
-Requires:       python3-oslo-log >= 3.22.0
-Requires:       python3-oslo-utils >= 3.20.0
+Requires:       python3-oslo-config >= 2:5.1.0
+Requires:       python3-oslo-i18n >= 3.15.3
+Requires:       python3-oslo-log >= 3.36.0
+Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
