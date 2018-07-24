@@ -53,7 +53,7 @@ BuildRequires:  python-dogpile-cache >= 0.6.2
 %endif
 
 Requires:       python2-six
-Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-config >= 2:5.2.0
 Requires:       python2-oslo-i18n >= 3.15.3
 Requires:       python2-oslo-log >= 3.36.0
 Requires:       python2-oslo-utils >= 3.33.0
@@ -109,6 +109,7 @@ Summary:        Cache storage for Openstack projects
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 # Required for tests
+BuildRequires:  python3-dogpile-cache >= 0.6.2
 BuildRequires:  python3-hacking
 BuildRequires:  python3-mock
 BuildRequires:  python3-oslotest
@@ -117,7 +118,7 @@ BuildRequires:  python3-pymongo
 
 Requires:       python3-dogpile-cache >= 0.6.2
 Requires:       python3-six
-Requires:       python3-oslo-config >= 2:5.1.0
+Requires:       python3-oslo-config >= 2:5.2.0
 Requires:       python3-oslo-i18n >= 3.15.3
 Requires:       python3-oslo-log >= 3.36.0
 Requires:       python3-oslo-utils >= 3.33.0
