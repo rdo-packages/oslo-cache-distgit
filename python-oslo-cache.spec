@@ -1,5 +1,5 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
-%if 0%{?fedora} >= 24
+%if 0%{?fedora} >= 24 || 0%{?rhel} > 7
 %global with_python3 1
 %endif
 
@@ -42,7 +42,7 @@ BuildRequires:  python2-oslotest
 BuildRequires:  python2-oslo-log
 # Required to compile translation files
 BuildRequires:  python2-babel
-%if 0%{?fedora} > 0
+%if 0%{?fedora} || 0%{?rhel} > 7
 BuildRequires:  python2-memcached
 BuildRequires:  python2-pymongo
 BuildRequires:  python2-dogpile-cache >= 0.6.2
@@ -57,7 +57,7 @@ Requires:       python2-oslo-config >= 2:5.2.0
 Requires:       python2-oslo-i18n >= 3.15.3
 Requires:       python2-oslo-log >= 3.36.0
 Requires:       python2-oslo-utils >= 3.33.0
-%if 0%{?fedora} > 0
+%if 0%{?fedora} || 0%{?rhel} > 7
 Requires:       python2-dogpile-cache >= 0.6.2
 Requires:       python2-memcached
 %else
@@ -92,7 +92,7 @@ Requires:  python2-%{pkg_name} = %{version}-%{release}
 Requires:  python2-hacking
 Requires:  python2-mock
 Requires:  python2-oslotest
-%if 0%{?fedora} > 0
+%if 0%{?fedora} || 0%{?rhel} > 7
 Requires:  python2-pymongo
 %else
 Requires:  python-pymongo
