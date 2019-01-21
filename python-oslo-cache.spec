@@ -40,15 +40,14 @@ BuildRequires:  python2-hacking
 BuildRequires:  python2-mock
 BuildRequires:  python2-oslotest
 BuildRequires:  python2-oslo-log
+BuildRequires:  python2-stestr
 # Required to compile translation files
 BuildRequires:  python2-babel
 %if 0%{?fedora} || 0%{?rhel} > 7
 BuildRequires:  python2-memcached
-BuildRequires:  python2-pymongo
 BuildRequires:  python2-dogpile-cache >= 0.6.2
 %else
 BuildRequires:  python-memcached
-BuildRequires:  python-pymongo
 BuildRequires:  python-dogpile-cache >= 0.6.2
 %endif
 
@@ -92,11 +91,7 @@ Requires:  python2-%{pkg_name} = %{version}-%{release}
 Requires:  python2-hacking
 Requires:  python2-mock
 Requires:  python2-oslotest
-%if 0%{?fedora} || 0%{?rhel} > 7
-Requires:  python2-pymongo
-%else
-Requires:  python-pymongo
-%endif
+Requires:  python2-stestr
 
 %description -n python2-%{pkg_name}-tests
 Tests for the OpenStack Oslo Cache library
@@ -115,7 +110,7 @@ BuildRequires:  python3-mock
 BuildRequires:  python3-oslotest
 BuildRequires:  python3-oslo-log
 BuildRequires:  python3-memcached
-BuildRequires:  python3-pymongo
+BuildRequires:  python3-stestr
 BuildRequires:  python3-urllib3
 
 Requires:       python3-dogpile-cache >= 0.6.2
@@ -137,7 +132,7 @@ Requires:  python3-%{pkg_name} = %{version}-%{release}
 Requires:  python3-hacking
 Requires:  python3-mock
 Requires:  python3-oslotest
-Requires:  python3-pymongo
+Requires:  python3-stestr
 
 %description -n python3-%{pkg_name}-tests
 Tests for the OpenStack Oslo Cache library
@@ -200,11 +195,9 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_cache/locale
 %find_lang oslo_cache --all-name
 
 %check
-%{__python2} setup.py test
+stestr --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
 %if 0%{?with_python3}
-rm -rf .testrepository
-# Ignore errors in python3 tests as it needs etcd3gw which is optional and not in RDO.
-%{__python3} setup.py test || true
+stestr-3 --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
 %endif
 
 %files -n python2-%{pkg_name}
