@@ -184,11 +184,16 @@ dos2unix doc/build/html/_static/jquery.js
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
+%if 0%{?with_python3}
+rm -rf %{buildroot}%{python2_sitelib}/oslo_cache/locale
+rm -f %{buildroot}%{python3_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
+rm -f %{buildroot}%{python3_sitelib}/oslo_cache/locale/*pot
+mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/locale
+%else
+rm -rf %{buildroot}%{python3_sitelib}/oslo_cache/locale
 rm -f %{buildroot}%{python2_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
 rm -f %{buildroot}%{python2_sitelib}/oslo_cache/locale/*pot
 mv %{buildroot}%{python2_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/locale
-%if 0%{?with_python3}
-rm -rf %{buildroot}%{python3_sitelib}/oslo_cache/locale
 %endif
 
 # Find language files
