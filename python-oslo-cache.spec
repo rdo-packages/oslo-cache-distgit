@@ -17,7 +17,7 @@ support memoization, key value storage and interfaces to common caching \
 backends such as Memcached.
 
 Name:           python-oslo-cache
-Version:        1.30.2
+Version:        1.30.3
 Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
@@ -239,6 +239,9 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Fri Feb 01 2019 RDO <dev@lists.rdoproject.org> 1.30.3-1
+- Update to 1.30.3
+
 * Tue Nov 27 2018 RDO <dev@lists.rdoproject.org> 1.30.2-1
 - Update to 1.30.2
 
