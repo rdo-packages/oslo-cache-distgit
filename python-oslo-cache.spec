@@ -11,7 +11,7 @@
 %global pkg_name oslo-cache
 
 Name:           python-oslo-cache
-Version:        1.25.1
+Version:        1.25.2
 Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
@@ -225,6 +225,9 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Thu Apr 18 2019 RDO <dev@lists.rdoproject.org> 1.25.2-1
+- Update to 1.25.2
+
 * Tue Nov 21 2017 RDO <dev@lists.rdoproject.org> 1.25.1-1
 - Update to 1.25.1
 
