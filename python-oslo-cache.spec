@@ -200,9 +200,9 @@ mv %{buildroot}%{python2_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %find_lang oslo_cache --all-name
 
 %check
-stestr --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
+PYTHON=python2 stestr --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
 %if 0%{?with_python3}
-stestr-3 --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
+PYTHON=python3 stestr-3 --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
 %endif
 
 %files -n python2-%{pkg_name}
