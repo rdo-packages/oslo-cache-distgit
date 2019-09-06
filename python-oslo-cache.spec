@@ -51,7 +51,7 @@ BuildRequires:  python-memcached
 BuildRequires:  python-dogpile-cache >= 0.6.2
 %endif
 
-Requires:       python2-six
+Requires:       python2-six >= 1.11.0
 Requires:       python2-oslo-config >= 2:5.2.0
 Requires:       python2-oslo-i18n >= 3.15.3
 Requires:       python2-oslo-log >= 3.36.0
@@ -114,7 +114,7 @@ BuildRequires:  python3-stestr
 BuildRequires:  python3-urllib3
 
 Requires:       python3-dogpile-cache >= 0.6.2
-Requires:       python3-six
+Requires:       python3-six >= 1.11.0
 Requires:       python3-oslo-config >= 2:5.2.0
 Requires:       python3-oslo-i18n >= 3.15.3
 Requires:       python3-oslo-log >= 3.36.0
