@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69a16058_4789a52d",
+        "filename": "python-oslo-cache.spec",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-10-01T16:13:54Z",
+      "side": 1,
+      "message": "this should not be needed, by default the name will be %{name}-doc which is same as python-%{pkg_name}",
+      "range": {
+        "startLine": 89,
+        "startChar": 13,
+        "endLine": 89,
+        "endChar": 35
+      },
+      "revId": "8b982d609e8ebf1f89bc5f182f0e5b846dd7280b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
