@@ -172,3 +172,4 @@ PYTHON=python%{pyver} stestr-%{pyver} --test-path ./oslo_cache/tests run --black
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.cache/commit/?id=8a8248d764bbb1db6c0089a58745803c03e38fdb
