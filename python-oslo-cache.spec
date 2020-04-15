@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 # NOTE(ykarel) disable doc as doc depends on etcd3gw which is
@@ -36,70 +25,62 @@ BuildArch:      noarch
 
 BuildRequires:  git
 
-%package -n python%{pyver}-%{pkg_name}
+%package -n python3-%{pkg_name}
 Summary:        Cache storage for Openstack projects
-%{?python_provide:%python_provide python%{pyver}-%{pkg_name}}
+%{?python_provide:%python_provide python3-%{pkg_name}}
 
-BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-pbr
-BuildRequires:  python%{pyver}-urllib3
+BuildRequires:  python3-devel
+BuildRequires:  python3-pbr
+BuildRequires:  python3-urllib3
 # Required for tests
-BuildRequires:  python%{pyver}-hacking
-BuildRequires:  python%{pyver}-mock
-BuildRequires:  python%{pyver}-oslotest
-BuildRequires:  python%{pyver}-oslo-log
-BuildRequires:  python%{pyver}-stestr
-BuildRequires:  python%{pyver}-dogpile-cache >= 0.6.2
+BuildRequires:  python3-hacking
+BuildRequires:  python3-mock
+BuildRequires:  python3-oslotest
+BuildRequires:  python3-oslo-log
+BuildRequires:  python3-stestr
+BuildRequires:  python3-dogpile-cache >= 0.6.2
 # Required to compile translation files
-BuildRequires:  python%{pyver}-babel
-%if %{pyver} == 2
-BuildRequires:  python-memcached
-%else
-BuildRequires:  python%{pyver}-memcached
-%endif
+BuildRequires:  python3-babel
+BuildRequires:  python3-memcached
 
-Requires:       python%{pyver}-six >= 1.11.0
-Requires:       python%{pyver}-oslo-config >= 2:5.2.0
-Requires:       python%{pyver}-oslo-i18n >= 3.15.3
-Requires:       python%{pyver}-oslo-log >= 3.36.0
-Requires:       python%{pyver}-oslo-utils >= 3.33.0
-Requires:       python%{pyver}-dogpile-cache >= 0.6.2
-%if %{pyver} == 2
-Requires:       python-memcached
-%else
-Requires:       python%{pyver}-memcached
-%endif
+Requires:       python3-six >= 1.11.0
+Requires:       python3-oslo-config >= 2:5.2.0
+Requires:       python3-oslo-i18n >= 3.15.3
+Requires:       python3-oslo-log >= 3.36.0
+Requires:       python3-oslo-utils >= 3.33.0
+Requires:       python3-dogpile-cache >= 0.6.2
+Requires:       python3-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 
-%description -n python%{pyver}-%{pkg_name}
+%description -n python3-%{pkg_name}
 %{common_desc}
 
 %if 0%{?with_doc}
 %package -n python-%{pkg_name}-doc
 Summary:        Documentation for the OpenStack Oslo Cache library
 
-BuildRequires:  python%{pyver}-sphinx
-BuildRequires:  python%{pyver}-oslo-config
-BuildRequires:  python%{pyver}-openstackdocstheme
-BuildRequires:  python%{pyver}-oslo-sphinx
-BuildRequires:  python%{pyver}-fixtures
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-oslo-config
+BuildRequires:  python3-openstackdocstheme
+BuildRequires:  python3-oslo-sphinx
+BuildRequires:  python3-fixtures
 BuildRequires:  dos2unix
 
 %description -n python-%{pkg_name}-doc
 Documentation for the OpenStack Oslo cache library.
 %endif
 
-%package  -n python%{pyver}-%{pkg_name}-tests
+%package  -n python3-%{pkg_name}-tests
 Summary:        Tests for the OpenStack Oslo Cache library
 
-Requires:  python%{pyver}-%{pkg_name} = %{version}-%{release}
-Requires:  python%{pyver}-hacking
-Requires:  python%{pyver}-mock
-Requires:  python%{pyver}-oslotest
-Requires:  python%{pyver}-stestr
+Requires:  python3-%{pkg_name} = %{version}-%{release}
+Requires:  python3-hacking
+Requires:  python3-mock
+Requires:  python3-oslotest
+Requires:  python3-stestr
 
-%description -n python%{pyver}-%{pkg_name}-tests
+%description -n python3-%{pkg_name}-tests
 Tests for the OpenStack Oslo Cache library
 
 %package  -n python-%{pkg_name}-lang
@@ -123,41 +104,41 @@ rm -f {test-,}requirements.txt
 
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %if 0%{?with_doc}
 #doc
-%{pyver_bin} setup.py build_sphinx -b html
+python3 setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 %endif
 # Generate i18n files
-%{pyver_bin} setup.py compile_catalog -d build/lib/oslo_cache/locale
+python3 setup.py compile_catalog -d build/lib/oslo_cache/locale
 
 %install
-%{pyver_install}
+%{py3_install}
 %if 0%{?with_doc}
 dos2unix doc/build/html/_static/jquery.js
 %endif
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
-rm -f %{buildroot}%{pyver_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
-rm -f %{buildroot}%{pyver_sitelib}/oslo_cache/locale/*pot
-mv %{buildroot}%{pyver_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/locale
+rm -f %{buildroot}%{python3_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
+rm -f %{buildroot}%{python3_sitelib}/oslo_cache/locale/*pot
+mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/locale
 
 # Find language files
 %find_lang oslo_cache --all-name
 
 %check
-PYTHON=python%{pyver} stestr-%{pyver} --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
+PYTHON=python3 stestr-3 --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
 
-%files -n python%{pyver}-%{pkg_name}
+%files -n python3-%{pkg_name}
 %license LICENSE
 %doc AUTHORS CONTRIBUTING.rst README.rst PKG-INFO ChangeLog
-%{pyver_sitelib}/oslo_cache
-%{pyver_sitelib}/%{pypi_name}-%{upstream_version}-py?.?.egg-info
-%exclude %{pyver_sitelib}/oslo_cache/tests
+%{python3_sitelib}/oslo_cache
+%{python3_sitelib}/%{pypi_name}-%{upstream_version}-py?.?.egg-info
+%exclude %{python3_sitelib}/oslo_cache/tests
 
 %if 0%{?with_doc}
 %files -n python-%{pkg_name}-doc
@@ -165,8 +146,8 @@ PYTHON=python%{pyver} stestr-%{pyver} --test-path ./oslo_cache/tests run --black
 %license LICENSE
 %endif
 
-%files -n python%{pyver}-%{pkg_name}-tests
-%{pyver_sitelib}/oslo_cache/tests
+%files -n python3-%{pkg_name}-tests
+%{python3_sitelib}/oslo_cache/tests
 
 %files -n python-%{pkg_name}-lang -f oslo_cache.lang
 %license LICENSE
