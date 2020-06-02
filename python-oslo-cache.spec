@@ -113,7 +113,7 @@ python3 setup.py build_sphinx -b html
 rm -fr doc/build/html/.buildinfo
 %endif
 # Generate i18n files
-python3 setup.py compile_catalog -d build/lib/oslo_cache/locale
+python3 setup.py compile_catalog -d build/lib/oslo_cache/locale --domain oslo_cache
 
 %install
 %{py3_install}
