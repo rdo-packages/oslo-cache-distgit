@@ -113,7 +113,7 @@ python3 setup.py build_sphinx -b html
 rm -fr doc/build/html/.buildinfo
 %endif
 # Generate i18n files
-python3 setup.py compile_catalog -d build/lib/oslo_cache/locale
+python3 setup.py compile_catalog -d build/lib/oslo_cache/locale --domain oslo_cache
 
 %install
 %{py3_install}
@@ -131,7 +131,7 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %find_lang oslo_cache --all-name
 
 %check
-PYTHON=python3 stestr-3 --test-path ./oslo_cache/tests run --black-regex 'oslo_cache.tests.test_cache_backend_mongo'
+PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'oslo_cache.tests.unit.test_cache_backend_mongo'
 
 %files -n python3-%{pkg_name}
 %license LICENSE
