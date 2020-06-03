@@ -153,3 +153,4 @@ PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'osl
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.cache/commit/?id=ef606c96ac8461a450e3e749b1b5a7cff2cb6a42
