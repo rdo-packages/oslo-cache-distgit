@@ -136,7 +136,7 @@ PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'osl
 %license LICENSE
 %doc AUTHORS CONTRIBUTING.rst README.rst PKG-INFO ChangeLog
 %{python3_sitelib}/oslo_cache
-%{python3_sitelib}/%{pypi_name}-%{upstream_version}-py?.?.egg-info
+%{python3_sitelib}/%{pypi_name}-%{upstream_version}-py%{python3_version}.egg-info
 %exclude %{python3_sitelib}/oslo_cache/tests
 
 %if 0%{?with_doc}
