@@ -43,11 +43,11 @@ BuildRequires:  python3-dogpile-cache >= 0.6.2
 BuildRequires:  python3-babel
 BuildRequires:  python3-memcached
 
-Requires:       python3-oslo-config >= 2:5.2.0
-Requires:       python3-oslo-i18n >= 3.15.3
-Requires:       python3-oslo-log >= 3.36.0
-Requires:       python3-oslo-utils >= 3.33.0
-Requires:       python3-dogpile-cache >= 0.6.2
+Requires:       python3-oslo-config >= 8.1.0
+Requires:       python3-oslo-i18n >= 5.0.0
+Requires:       python3-oslo-log >= 4.2.1
+Requires:       python3-oslo-utils >= 4.2.0
+Requires:       python3-dogpile-cache >= 1.0.2
 Requires:       python3-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
