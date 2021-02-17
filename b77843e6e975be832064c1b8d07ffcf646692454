@@ -1,0 +1,8 @@
+Code-Review+2: Joel Capitao <jcapitao@redhat.com>
+Workflow+1: Joel Capitao <jcapitao@redhat.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Wed, 17 Feb 2021 08:31:20 +0000
+Reviewed-on: https://review.rdoproject.org/r/32004
+Project: openstack/oslo-cache-distgit
+Branch: refs/heads/ussuri-rdo
