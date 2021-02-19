@@ -25,8 +25,8 @@ support memoization, key value storage and interfaces to common caching \
 backends such as Memcached.
 
 Name:           python-oslo-cache
-Version:        1.37.0
-Release:        2%{?dist}
+Version:        1.37.1
+Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -172,6 +172,9 @@ PYTHON=python%{pyver} stestr-%{pyver} --test-path ./oslo_cache/tests run --black
 %license LICENSE
 
 %changelog
+* Fri Feb 19 2021 RDO <dev@lists.rdoproject.org> 1.37.1-1
+- Update to 1.37.1
+
 * Thu Oct 03 2019 Joel Capitao <jcapitao@redhat.com> 1.37.0-2
 - Removed python2 subpackages in no el7 distros
 
