@@ -11,9 +11,7 @@
 # End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-# NOTE(ykarel) disable doc as doc depends on etcd3gw which is
-# not packaged.
-%global with_doc 0
+%global with_doc 1
 
 %global pypi_name oslo.cache
 %global pkg_name oslo-cache
@@ -58,6 +56,7 @@ BuildRequires:  python-memcached
 BuildRequires:  python%{pyver}-memcached
 %endif
 
+Requires:       python%{pyver}-etcd3gw >= 0.2.0
 Requires:       python%{pyver}-six >= 1.11.0
 Requires:       python%{pyver}-oslo-config >= 2:5.2.0
 Requires:       python%{pyver}-oslo-i18n >= 3.15.3
@@ -80,8 +79,10 @@ Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 Summary:        Documentation for the OpenStack Oslo Cache library
 
 BuildRequires:  python%{pyver}-sphinx
+BuildRequires:  python%{pyver}-sphinxcontrib-apidoc
 BuildRequires:  python%{pyver}-oslo-config
 BuildRequires:  python%{pyver}-openstackdocstheme
+BuildRequires:  python%{pyver}-etcd3gw
 BuildRequires:  python%{pyver}-oslo-sphinx
 BuildRequires:  python%{pyver}-fixtures
 BuildRequires:  dos2unix
@@ -127,18 +128,14 @@ rm -f {test-,}requirements.txt
 
 %if 0%{?with_doc}
 #doc
-%{pyver_bin} setup.py build_sphinx -b html
+sphinx-build -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 %endif
 # Generate i18n files
 %{pyver_bin} setup.py compile_catalog -d build/lib/oslo_cache/locale
 
-%install
-%{pyver_install}
-%if 0%{?with_doc}
-dos2unix doc/build/html/_static/jquery.js
-%endif
+%{py3_install}
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
