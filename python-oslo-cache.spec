@@ -1,8 +1,6 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-# NOTE(ykarel) disable doc as doc depends on etcd3gw which is
-# not packaged.
-%global with_doc 0
+%global with_doc 1
 
 %global pypi_name oslo.cache
 %global pkg_name oslo-cache
@@ -43,6 +41,7 @@ BuildRequires:  python3-dogpile-cache >= 0.6.2
 BuildRequires:  python3-babel
 BuildRequires:  python3-memcached
 
+Requires:       python3-etcd3gw >= 0.2.0
 Requires:       python3-six >= 1.11.0
 Requires:       python3-oslo-config >= 2:5.2.0
 Requires:       python3-oslo-i18n >= 3.15.3
@@ -61,11 +60,11 @@ Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 Summary:        Documentation for the OpenStack Oslo Cache library
 
 BuildRequires:  python3-sphinx
+BuildRequires:  python3-sphinxcontrib-apidoc
 BuildRequires:  python3-oslo-config
 BuildRequires:  python3-openstackdocstheme
-BuildRequires:  python3-oslo-sphinx
+BuildRequires:  python3-etcd3gw
 BuildRequires:  python3-fixtures
-BuildRequires:  dos2unix
 
 %description -n python-%{pkg_name}-doc
 Documentation for the OpenStack Oslo cache library.
@@ -108,7 +107,7 @@ rm -f {test-,}requirements.txt
 
 %if 0%{?with_doc}
 #doc
-python3 setup.py build_sphinx -b html
+sphinx-build -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 %endif
@@ -117,10 +116,6 @@ python3 setup.py compile_catalog -d build/lib/oslo_cache/locale
 
 %install
 %{py3_install}
-%if 0%{?with_doc}
-dos2unix doc/build/html/_static/jquery.js
-%endif
-
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
 rm -f %{buildroot}%{python3_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
