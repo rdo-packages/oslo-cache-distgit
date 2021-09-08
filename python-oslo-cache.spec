@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x4c29ff0e437f3351fd82bdf47c5a3bc787dc7035
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global with_doc 1
@@ -14,8 +14,8 @@ support memoization, key value storage and interfaces to common caching \
 backends such as Memcached.
 
 Name:           python-oslo-cache
-Version:        XXX
-Release:        XXX
+Version:        2.8.1
+Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -164,3 +164,6 @@ PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'osl
 %license LICENSE
 
 %changelog
+* Wed Sep 08 2021 RDO <dev@lists.rdoproject.org> 2.8.1-1
+- Update to 2.8.1
+
