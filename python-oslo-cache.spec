@@ -50,6 +50,7 @@ BuildRequires:  python3-oslotest
 BuildRequires:  python3-oslo-log
 BuildRequires:  python3-stestr
 BuildRequires:  python3-dogpile-cache >= 0.6.2
+BuildRequires:  python3-pymemcache
 # Required to compile translation files
 BuildRequires:  python3-babel
 BuildRequires:  python3-memcached
