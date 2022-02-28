@@ -50,6 +50,10 @@ BuildRequires:  python3-oslotest
 BuildRequires:  python3-oslo-log
 BuildRequires:  python3-stestr
 BuildRequires:  python3-dogpile-cache >= 0.6.2
+<<<<<<< HEAD   (c99f73 python-oslo-cache-2.8.1-1)
+=======
+BuildRequires:  python3-pymemcache >= 3.5.0
+>>>>>>> CHANGE (28d09d Set minimal version for pymemcache)
 # Required to compile translation files
 BuildRequires:  python3-babel
 BuildRequires:  python3-memcached
