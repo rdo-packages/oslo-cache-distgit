@@ -60,7 +60,7 @@ Requires:       python3-oslo-config >= 8.1.0
 Requires:       python3-oslo-i18n >= 5.0.0
 Requires:       python3-oslo-log >= 4.2.1
 Requires:       python3-oslo-utils >= 4.2.0
-Requires:       python3-dogpile-cache >= 1.1.2
+Requires:       python3-dogpile-cache >= 1.1.5
 Requires:       python3-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
