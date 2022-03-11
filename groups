@@ -1,9 +1,9 @@
 # UUID Group Name
 global:Registered-Users	Registered Users
-4572c517702492251ad622a289176552a8acbbb2	rdo-superusers
+401cf37bee35d1c809d4d957e55f2a304f8eed69	rdo-provenpackagers
 05a678d3d4a168e149d5e8a0063bbd1b1c5526da	Administrators
-6ddfecad023c6f4fa3ac8c4d2583c502ea675a73	Service Users
+4572c517702492251ad622a289176552a8acbbb2	rdo-superusers
 f9e9e038da6a0a56ab825233a79cfaabc7f2d479	openstack/oslo-cache-core
 global:Anonymous-Users	Anonymous Users
-401cf37bee35d1c809d4d957e55f2a304f8eed69	rdo-provenpackagers
 0225e5fe4a6b225354cdaf31ae3e74bb37e68deb	openstack/oslo-cache-ptl
+6ddfecad023c6f4fa3ac8c4d2583c502ea675a73	Service Users
