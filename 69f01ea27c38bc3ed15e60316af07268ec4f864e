@@ -16,6 +16,23 @@
       "message": "missing python-oslo-log",
       "revId": "69f01ea27c38bc3ed15e60316af07268ec4f864e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f157452a_d3de8d37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-03-14T11:55:01Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "69f01ea27c38bc3ed15e60316af07268ec4f864e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
