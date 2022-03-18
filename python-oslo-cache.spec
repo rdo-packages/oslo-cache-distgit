@@ -26,6 +26,7 @@ Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstr
 Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
+Patch0001:      0001-Fix-skipIf-conditional-of-pymemcache-features.patch
 BuildArch:      noarch
 
 # Required for tarball sources verification
