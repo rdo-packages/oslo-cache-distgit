@@ -1,0 +1,91 @@
+From f5a316dd2f3fab04cabff8d1a3a49c12d716e48a Mon Sep 17 00:00:00 2001
+From: Joel Capitao <jcapitao@redhat.com>
+Date: Thu, 17 Mar 2022 18:34:36 +0100
+Subject: [PATCH] Fix skipIf conditional of pymemcache features
+
+Those conditionals are reversed.
+
+Change-Id: Ia248e09942a858a02a8bf64ca4869f8813348d94
+---
+ oslo_cache/tests/unit/test_cache_basics.py | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/oslo_cache/tests/unit/test_cache_basics.py b/oslo_cache/tests/unit/test_cache_basics.py
+index 2a111fa..0cd5295 100644
+--- a/oslo_cache/tests/unit/test_cache_basics.py
++++ b/oslo_cache/tests/unit/test_cache_basics.py
+@@ -370,7 +370,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+             self.config_fixture.conf
+         )
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "socket keepalive is not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_socket_keepalive_disabled(self):
+         """Validate we build a dogpile.cache dict config without keepalive."""
+@@ -389,7 +389,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+         self.assertNotIn(
+             'test_prefix.arguments.socket_keepalive', config_dict)
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "socket keepalive is not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_socket_keepalive_enabled(self):
+         """Validate we build a dogpile.cache dict config with keepalive."""
+@@ -410,7 +410,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+             KeepaliveOpts
+         )
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "socket keepalive is not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_socket_keepalive_with_config(self):
+         """Validate we build a socket keepalive with the right config."""
+@@ -446,7 +446,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+             config_dict['test_prefix.arguments.socket_keepalive'].cnt
+         )
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "retry options are not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_retry_enabled_with_wrong_backend(self):
+         """Validate we build a config without the retry option when retry
+@@ -466,7 +466,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+             self.config_fixture.conf
+         )
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "retry options are not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_retry_disabled(self):
+         """Validate we build a config without the retry option when retry
+@@ -487,7 +487,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+             self.assertNotIn('test_prefix.arguments.{}'.format(el),
+                              config_dict)
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "retry options are not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_retry_enabled(self):
+         """Validate we build a dogpile.cache dict config with retry."""
+@@ -504,7 +504,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+         for el in opts:
+             self.assertIn('test_prefix.arguments.{}'.format(el), config_dict)
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.4', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.4', "the dogpile.cache.pymemcache "
+             "retry options are not supported before dogpile.cache 1.1.4")
+     def test_cache_pymemcache_retry_with_opts(self):
+         """Validate we build a valid config for the retry client."""
+@@ -531,7 +531,7 @@ class CacheRegionTest(test_cache.BaseTestCase):
+             42
+         )
+ 
+-    @skipIf(dogpile.__version__ >= '1.1.5', "the dogpile.cache.pymemcache "
++    @skipIf(dogpile.__version__ < '1.1.5', "the dogpile.cache.pymemcache "
+             "retry extra config are not supported before dogpile.cache 1.1.5")
+     def test_cache_pymemcache_retry_with_extra_opts(self):
+         """Validate we build a valid config for the retry client."""
+-- 
+2.35.1
+
