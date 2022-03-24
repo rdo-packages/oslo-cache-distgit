@@ -180,3 +180,4 @@ PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'osl
 * Fri Sep 18 2020 RDO <dev@lists.rdoproject.org> 2.6.1-1
 - Update to 2.6.1
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/oslo.cache/commit/91f61a50c0a4df70ff7e9c729aa3feda82e59582
