@@ -113,6 +113,7 @@ Translation files for Oslo cache library
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
+rm -rf oslo_cache/tests/unit/test_connection_pool.py
 
 # Let RPM handle the dependencies
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
