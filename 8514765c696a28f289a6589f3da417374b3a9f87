@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a0dfd4_87e0b097",
+        "filename": "python-oslo-cache.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2022-09-09T09:40:51Z",
+      "side": 1,
+      "message": "You should replace the %{py3_install} line with this:\n\n%install\n%{pyver_install}",
+      "revId": "8514765c696a28f289a6589f3da417374b3a9f87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
