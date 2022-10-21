@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0xa63ea142678138d1bb15f2e303bdfd64dd164087
+%global sources_gpg_sign 0xa7475c5f2122fec3f90343223fe3bf5aad1080e4
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global with_doc 1
@@ -14,7 +14,7 @@ support memoization, key value storage and interfaces to common caching \
 backends such as Memcached.
 
 Name:           python-oslo-cache
-Version:        3.1.0
+Version:        3.2.0
 Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
@@ -166,6 +166,9 @@ PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'osl
 %license LICENSE
 
 %changelog
+* Fri Oct 21 2022 RDO <dev@lists.rdoproject.org> 3.2.0-1
+- Update to 3.2.0
+
 * Tue Sep 13 2022 RDO <dev@lists.rdoproject.org> 3.1.0-1
 - Update to 3.1.0
 
