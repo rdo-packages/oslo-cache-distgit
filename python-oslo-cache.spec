@@ -51,6 +51,7 @@ BuildRequires:  python3-oslo-log
 BuildRequires:  python3-stestr
 BuildRequires:  python3-dogpile-cache >= 0.6.2
 BuildRequires:  python3-pymemcache >= 3.5.0
+BuildRequires:  python3-binary-memcached
 # Required to compile translation files
 BuildRequires:  python3-babel
 BuildRequires:  python3-memcached
@@ -62,6 +63,7 @@ Requires:       python3-oslo-log >= 4.2.1
 Requires:       python3-oslo-utils >= 4.2.0
 Requires:       python3-dogpile-cache >= 1.1.5
 Requires:       python3-memcached
+Requires:       python3-binary-memcached
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 
@@ -113,7 +115,6 @@ Translation files for Oslo cache library
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
-rm -rf oslo_cache/tests/unit/test_connection_pool.py
 
 # Let RPM handle the dependencies
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
