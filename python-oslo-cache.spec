@@ -145,7 +145,7 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %find_lang oslo_cache --all-name
 
 %check
-PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --black-regex 'oslo_cache.tests.unit.test_cache_backend_mongo'
+PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --exclude-regex 'oslo_cache.tests.unit.test_cache_backend_mongo'
 
 %files -n python3-%{pkg_name}
 %license LICENSE
