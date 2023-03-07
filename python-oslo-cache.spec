@@ -14,8 +14,8 @@ support memoization, key value storage and interfaces to common caching \
 backends such as Memcached.
 
 Name:           python-oslo-cache
-Version:        XXX
-Release:        XXX
+Version:        3.3.1
+Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        ASL 2.0
@@ -167,3 +167,6 @@ PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --exclude-regex 'o
 %license LICENSE
 
 %changelog
+* Tue Mar 07 2023 RDO <dev@lists.rdoproject.org> 3.3.1-1
+- Update to 3.3.1
+
