@@ -1,6 +1,12 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order pifpaf
+# Exclude sphinx from BRs if docs are disabled
+%if ! 0%{?with_doc}
+%global excluded_brs %{excluded_brs} sphinx openstackdocstheme
+%endif
 
 %global with_doc 1
 
@@ -18,7 +24,7 @@ Version:        XXX
 Release:        XXX
 Summary:        Cache storage for Openstack projects
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            http://launchpad.net/%{pypi_name}
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -38,32 +44,9 @@ BuildRequires:  git-core
 
 %package -n python3-%{pkg_name}
 Summary:        Cache storage for Openstack projects
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-pbr
-BuildRequires:  python3-urllib3
-# Required for tests
-BuildRequires:  python3-hacking
-BuildRequires:  python3-mock
-BuildRequires:  python3-oslotest
-BuildRequires:  python3-oslo-log
-BuildRequires:  python3-stestr
-BuildRequires:  python3-dogpile-cache >= 0.6.2
-BuildRequires:  python3-pymemcache >= 3.5.0
-BuildRequires:  python3-binary-memcached
-# Required to compile translation files
-BuildRequires:  python3-babel
-BuildRequires:  python3-memcached
-
-Requires:       python3-etcd3gw >= 0.2.0
-Requires:       python3-oslo-config >= 8.1.0
-Requires:       python3-oslo-i18n >= 5.0.0
-Requires:       python3-oslo-log >= 4.2.1
-Requires:       python3-oslo-utils >= 4.2.0
-Requires:       python3-dogpile-cache >= 1.1.5
-Requires:       python3-memcached
-Requires:       python3-binary-memcached >= 0.29.0
+BuildRequires:  pyproject-rpm-macros
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 
 
@@ -74,13 +57,6 @@ Requires:       python-%{pkg_name}-lang = %{version}-%{release}
 %package -n python-%{pkg_name}-doc
 Summary:        Documentation for the OpenStack Oslo Cache library
 
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-sphinxcontrib-apidoc
-BuildRequires:  python3-oslo-config
-BuildRequires:  python3-openstackdocstheme
-BuildRequires:  python3-etcd3gw
-BuildRequires:  python3-fixtures
-
 %description -n python-%{pkg_name}-doc
 Documentation for the OpenStack Oslo cache library.
 %endif
@@ -89,6 +65,8 @@ Documentation for the OpenStack Oslo cache library.
 Summary:        Tests for the OpenStack Oslo Cache library
 
 Requires:  python3-%{pkg_name} = %{version}-%{release}
+Requires:  python3-%{pkg_name}+dogpile = %{version}-%{release}
+Requires:  python3-%{pkg_name}+etcd3gw = %{version}-%{release}
 Requires:  python3-hacking
 Requires:  python3-mock
 Requires:  python3-oslotest
@@ -113,28 +91,45 @@ Translation files for Oslo cache library
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
-# Let RPM handle the dependencies
-sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
-rm -f {test-,}requirements.txt
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
 
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs}; do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+# Automatic BR generation
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
 #doc
-sphinx-build -b html doc/source doc/build/html
+%tox -e docs
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 %endif
-# Generate i18n files
-python3 setup.py compile_catalog -d build/lib/oslo_cache/locale --domain oslo_cache
 
 %install
-%{py3_install}
+%pyproject_install
+
+# Generate i18n files
+python3 setup.py compile_catalog -d %{buildroot}%{python3_sitelib}/oslo_cache/locale --domain oslo_cache
+
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
 rm -f %{buildroot}%{python3_sitelib}/oslo_cache/locale/*/LC_*/oslo_cache*po
@@ -145,13 +140,15 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %find_lang oslo_cache --all-name
 
 %check
-PYTHON=python3 stestr --test-path ./oslo_cache/tests/unit run --exclude-regex 'oslo_cache.tests.unit.test_cache_backend_mongo'
+%tox -e %{default_toxenv}
+
+%pyproject_extras_subpkg -n python3-%{pkg_name} dogpile etcd3gw
 
 %files -n python3-%{pkg_name}
 %license LICENSE
 %doc AUTHORS CONTRIBUTING.rst README.rst PKG-INFO ChangeLog
 %{python3_sitelib}/oslo_cache
-%{python3_sitelib}/%{pypi_name}-%{upstream_version}-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-%{upstream_version}.dist-info
 %exclude %{python3_sitelib}/oslo_cache/tests
 
 %if 0%{?with_doc}
