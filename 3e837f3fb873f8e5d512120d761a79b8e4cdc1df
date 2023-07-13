@@ -88,6 +88,42 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba08be69_95ae9295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-07-13T12:17:12Z",
+      "side": 1,
+      "message": "Right, let\u0027s remove it",
+      "parentUuid": "d01d453a_58709e3a",
+      "revId": "3e837f3fb873f8e5d512120d761a79b8e4cdc1df",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b87983a1_f2a65a0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-07-13T12:17:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a150e40_33ff253a",
+      "revId": "3e837f3fb873f8e5d512120d761a79b8e4cdc1df",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd2fd540_26510869",
@@ -101,6 +137,30 @@
       "writtenOn": "2023-07-13T09:54:24Z",
       "side": 1,
       "message": "let\u0027s get rid of hacking as requirement as we are removing it as automatic BR",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "3e837f3fb873f8e5d512120d761a79b8e4cdc1df",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5252f1f9_55d6521a",
+        "filename": "python-oslo-cache.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-07-13T12:17:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd2fd540_26510869",
       "range": {
         "startLine": 70,
         "startChar": 0,
