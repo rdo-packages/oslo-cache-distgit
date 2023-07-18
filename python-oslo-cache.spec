@@ -163,3 +163,4 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/oslo.cache/commit/a7200161b056a7febce470b06817f8ddc1c65e41
