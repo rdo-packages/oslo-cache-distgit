@@ -1,0 +1,9 @@
+Code-Review+2: Alfredo Moralejo <amoralej@redhat.com>
+Workflow+1: Alfredo Moralejo <amoralej@redhat.com>
+Code-Review+1: Sławek Kapłoński <skaplons@redhat.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Fri, 27 Oct 2023 11:42:19 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/oslo-cache-distgit/+/50675
+Project: openstack/oslo-cache-distgit
+Branch: refs/heads/rpm-master
