@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ee0f257_0cb13491",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2023-10-27T10:44:22Z",
+      "side": 1,
+      "message": "neutron requires those deps and failing as https://logserver.rdoproject.org/openstack-periodic-container-master-centos9/review.rdoproject.org/rdo-jobs/master/periodic-podified-edpm-baremetal-master-ocp-crc/d86599e/ci-framework-data/logs/crc/pods/openstack_neutron-7cf45cc6fd-nsct5_4361d374-cd83-46ea-8275-734899183b1f/neutron-api/0.log",
+      "revId": "7ca8d15855bfa31eb8f5aba1f2247f21c8b82916",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
