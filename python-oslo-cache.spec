@@ -48,6 +48,8 @@ Summary:        Cache storage for Openstack projects
 BuildRequires:  python3-devel
 BuildRequires:  pyproject-rpm-macros
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
+Requires:       python3-%{pkg_name}+dogpile = %{version}-%{release}
+Requires:       python3-%{pkg_name}+etcd3gw = %{version}-%{release}
 
 
 %description -n python3-%{pkg_name}
@@ -65,8 +67,6 @@ Documentation for the OpenStack Oslo cache library.
 Summary:        Tests for the OpenStack Oslo Cache library
 
 Requires:  python3-%{pkg_name} = %{version}-%{release}
-Requires:  python3-%{pkg_name}+dogpile = %{version}-%{release}
-Requires:  python3-%{pkg_name}+etcd3gw = %{version}-%{release}
 Requires:  python3-mock
 Requires:  python3-oslotest
 Requires:  python3-stestr
