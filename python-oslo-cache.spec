@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x815AFEC729392386480E076DCC0DFE2D21C023C9
+%global sources_gpg_sign 0x815afec729392386480e076dcc0dfe2d21c023c9
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 # we are excluding some BRs from automatic generator
 %global excluded_brs doc8 bandit pre-commit hacking flake8-import-order pifpaf
@@ -48,6 +48,8 @@ Summary:        Cache storage for Openstack projects
 BuildRequires:  python3-devel
 BuildRequires:  pyproject-rpm-macros
 Requires:       python-%{pkg_name}-lang = %{version}-%{release}
+Requires:       python3-%{pkg_name}+dogpile = %{version}-%{release}
+Requires:       python3-%{pkg_name}+etcd3gw = %{version}-%{release}
 
 
 %description -n python3-%{pkg_name}
@@ -65,8 +67,6 @@ Documentation for the OpenStack Oslo cache library.
 Summary:        Tests for the OpenStack Oslo Cache library
 
 Requires:  python3-%{pkg_name} = %{version}-%{release}
-Requires:  python3-%{pkg_name}+dogpile = %{version}-%{release}
-Requires:  python3-%{pkg_name}+etcd3gw = %{version}-%{release}
 Requires:  python3-mock
 Requires:  python3-oslotest
 Requires:  python3-stestr
