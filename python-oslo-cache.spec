@@ -21,7 +21,7 @@ backends such as Memcached.
 
 Name:           python-oslo-cache
 Version:        3.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        Apache-2.0
@@ -164,6 +164,9 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %license LICENSE
 
 %changelog
+* Wed Jan 10 2024 Alfredo Moralejo <amoralej@redhat.com> 3.5.0-2
+- Add dogpile and etcd3gw as runtime mandatory deps
+
 * Fri Sep 01 2023 RDO <dev@lists.rdoproject.org> 3.5.0-1
 - Update to 3.5.0
 
