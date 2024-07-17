@@ -56,7 +56,9 @@ BuildRequires:  python3-binary-memcached
 BuildRequires:  python3-babel
 BuildRequires:  python3-memcached
 
+%if 0%{?rhosp} == 0
 Requires:       python3-etcd3gw >= 0.2.0
+%endif
 Requires:       python3-oslo-config >= 8.1.0
 Requires:       python3-oslo-i18n >= 5.0.0
 Requires:       python3-oslo-log >= 4.2.1
