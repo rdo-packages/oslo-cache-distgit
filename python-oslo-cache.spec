@@ -96,6 +96,8 @@ sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
 sed -i /^minversion.*/d tox.ini
 sed -i /^requires.*virtualenv.*/d tox.ini
 sed -i '/sphinx-build/ s/-W//' tox.ini
+# FIXME(jcapitao): remove line below once dogpile.cache update to 1.3.3
+sed -i 's/dogpile.cache.*/dogpile.cache/' requirements.txt
 
 # Exclude some bad-known BRs
 for pkg in %{excluded_brs}; do
