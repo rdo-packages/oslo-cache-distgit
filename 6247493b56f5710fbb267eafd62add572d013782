@@ -1,0 +1,8 @@
+Code-Review+2: Karolina Kula <kkula@redhat.com>
+Workflow+1: Karolina Kula <kkula@redhat.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Tue, 26 Nov 2024 12:34:11 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/oslo-cache-distgit/+/55593
+Project: openstack/oslo-cache-distgit
+Branch: refs/heads/rpm-master
