@@ -1,6 +1,8 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x22284f69d9eccdf3df7819791c711af193ff8e54
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+%{?dlrn: %global tarsources oslo.cache}
+%{!?dlrn: %global tarsources oslo_cache}
 # we are excluding some BRs from automatic generator
 %global excluded_brs doc8 bandit pre-commit hacking flake8-import-order pifpaf
 # Exclude sphinx from BRs if docs are disabled
@@ -20,16 +22,16 @@ support memoization, key value storage and interfaces to common caching \
 backends such as Memcached.
 
 Name:           python-oslo-cache
-Version:        XXX
-Release:        XXX
+Version:        3.10.1
+Release:        1%{?dist}
 Summary:        Cache storage for Openstack projects
 
 License:        Apache-2.0
 URL:            http://launchpad.net/%{pypi_name}
-Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+Source0:        https://tarballs.openstack.org/%{pypi_name}/%{tarsources}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
 %if 0%{?sources_gpg} == 1
-Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
+Source101:        https://tarballs.openstack.org/%{pypi_name}/%{tarsources}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
 BuildArch:      noarch
@@ -88,7 +90,7 @@ Translation files for Oslo cache library
 %if 0%{?sources_gpg} == 1
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
-%autosetup -n %{pypi_name}-%{upstream_version} -S git
+%autosetup -n %{tarsources}-%{upstream_version} -S git
 
 sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
 sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
@@ -147,7 +149,7 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %license LICENSE
 %doc AUTHORS CONTRIBUTING.rst README.rst PKG-INFO ChangeLog
 %{python3_sitelib}/oslo_cache
-%{python3_sitelib}/%{pypi_name}-%{upstream_version}.dist-info
+%{python3_sitelib}/%{tarsources}-%{upstream_version}.dist-info
 %exclude %{python3_sitelib}/oslo_cache/tests
 
 %if 0%{?with_doc}
@@ -163,3 +165,6 @@ mv %{buildroot}%{python3_sitelib}/oslo_cache/locale %{buildroot}%{_datadir}/loca
 %license LICENSE
 
 %changelog
+* Mon Mar 17 2025 RDO <dev@lists.rdoproject.org> 3.10.1-1
+- Update to 3.10.1
+
